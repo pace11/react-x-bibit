@@ -1,25 +1,81 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Layout from './layout'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Layout>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+      <p>
+        Dolor tempor aliqua tempor minim sunt ipsum sunt excepteur
+        mollit exercitation. Non pariatur deserunt voluptate cillum
+        esse aliquip pariatur nulla adipisicing occaecat adipisicing
+        commodo. Officia pariatur id occaecat anim cupidatat minim
+        officia nulla elit anim anim in. Ex commodo nisi do excepteur
+        exercitation ad. Consequat ut eiusmod adipisicing eiusmod ea
+        nostrud non.
+      </p>
+    </Layout>
+  )
 }
-
-export default App;
