@@ -1,13 +1,13 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import theme from '../../common/theme'
+import theme from '../common/theme'
 
 const Section = styled.div`
   width: ${(props) => props.width || '100%'};
   height: 100%;
   background: ${(props) =>
     props.background ? props.background : theme.colors.white3};
-  padding: 10px;
+  padding: ${(props) => props.padding || '10px'};
   border-radius: 10px;
   box-sizing: border-box;
   margin-bottom: ${(props) => props.marginBottom || '0px'};
@@ -69,9 +69,13 @@ export default function Shimmer({ number, type }) {
       return (
         <React.Fragment>
           {[...Array(number).keys()].map((index) => (
-            <Section key={String(index)}>
+            <Section
+              key={String(index)}
+              background="transparent"
+              padding="0"
+            >
               <StyledWrapper>
-                <StyledDivShimmer height="8rem" />
+                <StyledDivShimmer height="15rem" />
                 <StyledDivShimmer height="1rem" width="60%" />
                 <StyledDivShimmer height="1rem" width="60%" />
               </StyledWrapper>

@@ -20,11 +20,11 @@ const Content = styled.div`
  *
  * @param {String, <any>} props.children
  */
-export default function Layout({ children }) {
+export default function Layout({ handleScroll, children }) {
   return (
     <Container>
       <Header />
-      <Content>{children}</Content>
+      <Content onScroll={handleScroll}>{children}</Content>
       <Navigation />
     </Container>
   )

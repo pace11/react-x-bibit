@@ -26,6 +26,10 @@ const CardTitle = styled.p`
   font-size: 14px;
   line-height: 19px;
   color: ${theme.colors.grey1};
+  :hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `
 
 const CardMovieType = styled.p`
@@ -58,15 +62,24 @@ const CardLabelYear = styled.span`
  * @param {String} props.imgUrl
  * @param {String} props.title
  * @param {String} props.type
+ * @param {Function} props.handleClickImage
+ * @param {Function} props.handleClickTitle
  */
-export default function Card({ year, imgUrl, title, type }) {
+export default function Card({
+  year,
+  imgUrl,
+  title,
+  type,
+  handleClickImage,
+  handleClickTitle,
+}) {
   return (
     <StyledCard>
       {year && <CardLabelYear>Year: {year}</CardLabelYear>}
-      <CardImage>
+      <CardImage onClick={handleClickImage}>
         <img alt="img-poster-movie" src={`${imgUrl}`} />
       </CardImage>
-      <CardTitle>{title}</CardTitle>
+      <CardTitle onClick={handleClickTitle}>{title}</CardTitle>
       <CardMovieType>{type}</CardMovieType>
     </StyledCard>
   )

@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import Section from '../../components/common/section'
-import ModalSearch from '../../components/common/modal-search'
-import Card from '../../components/card'
+import { useHistory } from 'react-router-dom'
+import Layout from '../../layout'
+import ModalSearch from '../../components/modal-search'
+import ModalPoster from '../../components/modal-poster'
+import SectionListMovies from './sectionListMovies'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   getListMovies,
   getListMoviesBySearch,
 } from '../../store/actions'
 
-const ContentWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: minmax(min-content, max-content);
-  grid-gap: 10px;
-`
-
 export default function Home() {
-  const [show, setShow] = useState(false)
-  const [isLoadingSearch, setIsLoadingSearch] = useState(false)
+  const history = useHistory()
   const dispatch = useDispatch()
+  const [show, setShow] = useState(false)
+  const [showPoster, setShowPoster] = useState(false)
+  const [page, setPage] = useState(1)
+  const [moviePoster, setMoviePoster] = useState()
+  const [pageMoviesSearch, setPageMoviesSearch] = useState(1)
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false)
+  const [keyword, setKeyword] = useState()
   const movies = useSelector((state) => state.movies)
   const moviesBySearch = useSelector((state) => state.moviesBySearch)
 
@@ -27,68 +27,101 @@ export default function Home() {
     dispatch(getListMovies({ search: 'batman', page: 1 }))
   }, [dispatch])
 
-  const HandleChangeSearch = (val) => {
-    if (val.length >= 3) {
+  useEffect(() => {
+    if (keyword) {
+      dispatch(
+        getListMoviesBySearch({ type: 'CLEAR_MOVIES_BY_SEARCH' }),
+      )
       setIsLoadingSearch(true)
-      setTimeout(() => {
+      const delayBounce = setTimeout(() => {
+        if (keyword.length >= 3) {
+          dispatch(
+            getListMoviesBySearch({ search: keyword, page: 1 }),
+          )
+        } else {
+          dispatch(
+            getListMoviesBySearch({ type: 'CLEAR_MOVIES_BY_SEARCH' }),
+          )
+        }
         setIsLoadingSearch(false)
-        dispatch(
-          getListMoviesBySearch({
-            search: val,
-            page: 1,
-          }),
-        )
       }, 2000)
+      return () => clearTimeout(delayBounce)
+    } else {
+      dispatch(
+        getListMoviesBySearch({ type: 'CLEAR_MOVIES_BY_SEARCH' }),
+      )
     }
-    dispatch(
-      getListMoviesBySearch({
-        search: '',
-      }),
-    )
-  }
+  }, [keyword, dispatch])
 
   const HandleCloseModalSearch = () => {
     setShow((show) => !show)
     dispatch(
       getListMoviesBySearch({
-        search: '',
+        type: 'CLEAR_MOVIES_BY_SEARCH',
       }),
     )
   }
 
-  console.log('datanya ===>', isLoadingSearch)
+  const HandleScroll = (e, type) => {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop ===
+      e.target.clientHeight
+    if (bottom) {
+      if (type === 'movies') {
+        if (movies.data.length < movies.totalResult) {
+          dispatch(
+            getListMovies({ search: 'batman', page: page + 1 }),
+          )
+          setPage((page) => page + 1)
+        }
+      } else {
+        if (moviesBySearch.data.length < moviesBySearch.totalResult) {
+          dispatch(
+            getListMoviesBySearch({
+              search: keyword,
+              page: pageMoviesSearch + 1,
+            }),
+          )
+          setPageMoviesSearch(
+            (pageMoviesSearch) => pageMoviesSearch + 1,
+          )
+        }
+      }
+    }
+  }
+
+  const HandleClickImage = (val) => {
+    setShowPoster((showPoster) => !showPoster)
+    setMoviePoster(movies.data[val].Poster)
+  }
+
+  const HandleClickTitle = (val) => {
+    history.push({
+      pathname: `/movie/${val}`,
+    })
+  }
 
   return (
-    <React.Fragment>
-      <Section
-        title="List Movies"
-        searchable
-        onClickSearch={() => setShow((show) => !show)}
-      >
-        <ContentWrapper>
-          {movies && movies.isLoading && !movies.data ? (
-            <p>Loading</p>
-          ) : (
-            movies.data &&
-            movies.data.Search.map((item, idx) => (
-              <Card
-                key={String(idx)}
-                year={item.Year}
-                imgUrl={item.Poster}
-                title={item.Title}
-                type={item.Type}
-              />
-            ))
-          )}
-        </ContentWrapper>
-      </Section>
+    <Layout handleScroll={(e) => HandleScroll(e, 'movies')}>
+      <SectionListMovies
+        list={movies}
+        handleClickSearch={() => setShow((show) => !show)}
+        handleClickImage={(val) => HandleClickImage(val)}
+        handleClickTitle={(val) => HandleClickTitle(val)}
+      />
+      <ModalPoster
+        show={showPoster}
+        imgUrl={moviePoster}
+        onClick={() => setShowPoster((showPoster) => !showPoster)}
+      />
       <ModalSearch
         show={show}
         onClick={() => HandleCloseModalSearch()}
+        handleScroll={(e) => HandleScroll(e, 'search-movies')}
         isLoadingSearch={isLoadingSearch}
-        onChange={(e) => HandleChangeSearch(e.target.value)}
+        onChange={(e) => setKeyword(e.target.value)}
         list={moviesBySearch}
       />
-    </React.Fragment>
+    </Layout>
   )
 }

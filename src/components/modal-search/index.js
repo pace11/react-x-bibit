@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import Shimmer from '../shimmer'
-import theme from '../../common/theme'
+import theme from '../common/theme'
 
 const animateZoom = keyframes`
 from {
@@ -59,7 +59,7 @@ const ModalContent = styled.div`
     height: 40px;
     border: 1px solid ${theme.colors.gray5};
     color: ${theme.colors.gray};
-    font-size: 18px;
+    font-size: 16px;
     padding: 0 5px;
     :focus {
       outline: none;
@@ -71,6 +71,7 @@ const ModalContent = styled.div`
   }
   span {
     font-size: 12px;
+    color: ${theme.colors.red};
   }
 `
 
@@ -118,10 +119,10 @@ export default function Modal({
   value,
   isLoadingSearch,
   onClick,
+  handleScroll,
   onChange,
   list,
 }) {
-  console.log('data dalem items', list)
   if (!show) {
     return null
   } else {
@@ -132,7 +133,7 @@ export default function Modal({
           <ModalContent>
             <input
               value={value}
-              placeholder="fill in at least 5 words ..."
+              placeholder="fill in at least 3 words ..."
               onChange={onChange}
             />
             {isLoadingSearch ? (
@@ -140,9 +141,9 @@ export default function Modal({
             ) : (
               list &&
               !list.isLoading && (
-                <ListMovies>
-                  {list.data && list.data.Search ? (
-                    list.data.Search.map((item, idx) => (
+                <ListMovies onScroll={handleScroll}>
+                  {list.data.length > 0 ? (
+                    list.data.map((item, idx) => (
                       <div key={String(idx)}>
                         <p>{item.Title}</p>
                         <p>

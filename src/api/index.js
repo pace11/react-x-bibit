@@ -29,3 +29,30 @@ export const fetchMovies = async (params) => {
     }
   }
 }
+
+export const fetchMovieById = async (params) => {
+  try {
+    const result = await Axios({
+      method: 'GET',
+      url: `${urlApi}?apiKey=${apiKey}&i=${params.id}`,
+    })
+    if (result.status !== 200) {
+      return {
+        data: null,
+        status: result.status,
+        statusText: result.statusText,
+      }
+    }
+    return {
+      data: result.data,
+      status: result.status,
+      statusText: result.statusText,
+    }
+  } catch (error) {
+    return {
+      data: null,
+      status: error.status,
+      statusText: error.statusText,
+    }
+  }
+}

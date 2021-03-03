@@ -1,9 +1,10 @@
 import React from 'react'
+import Layout from '../../layout'
 
 export default function LogicTest() {
   return (
-    <div>
+    <Layout>
       <p>Logic Test </p>
-    </div>
+    </Layout>
   )
 }

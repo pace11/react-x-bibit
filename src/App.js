@@ -12,11 +12,7 @@ export default function App() {
             key={String(idx)}
             path={route.path}
             exact={route.exact}
-            component={(props) => (
-              <route.layout>
-                <route.component {...props} />
-              </route.layout>
-            )}
+            component={(props) => <route.component {...props} />}
           />
         ))}
       </Router>
