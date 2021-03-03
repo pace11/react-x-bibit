@@ -74,7 +74,7 @@ export default function Card({
   handleClickTitle,
 }) {
   return (
-    <StyledCard>
+    <StyledCard data-testid="card">
       {year && <CardLabelYear>Year: {year}</CardLabelYear>}
       <CardImage onClick={handleClickImage}>
         <img alt="img-poster-movie" src={`${imgUrl}`} />

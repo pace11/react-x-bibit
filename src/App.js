@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import routes from './routes'
 import StyledBody from './styled-body'
 
-export default function App() {
+function App() {
   return (
-    <StyledBody>
+    <StyledBody data-testid="body-wrapper">
       <Router>
         {routes.map((route, idx) => (
           <Route
@@ -19,3 +19,5 @@ export default function App() {
     </StyledBody>
   )
 }
+
+export default App

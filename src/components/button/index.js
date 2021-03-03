@@ -38,6 +38,7 @@ export default function Button({
 }) {
   return (
     <ContainerButton
+      data-testid="button"
       block={block}
       disabled={disabled}
       onClick={onClick}

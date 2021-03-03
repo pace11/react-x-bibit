@@ -10,7 +10,7 @@ import {
   getListMoviesBySearch,
 } from '../../store/actions'
 
-export default function Home() {
+function Home() {
   const history = useHistory()
   const dispatch = useDispatch()
   const [show, setShow] = useState(false)
@@ -125,3 +125,5 @@ export default function Home() {
     </Layout>
   )
 }
+
+export default Home

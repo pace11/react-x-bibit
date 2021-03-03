@@ -65,7 +65,7 @@ export default function Modal({ show, imgUrl, onClick }) {
     return null
   } else {
     return (
-      <React.Fragment>
+      <React.Fragment data-testid="modal-poster">
         <StyledFilterBackground onClick={() => onClick()} />
         <ContainerModal>
           <ModalContent>

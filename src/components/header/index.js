@@ -23,7 +23,7 @@ const Container = styled.div`
 
 export default function Header() {
   return (
-    <Container>
+    <Container data-testid="header">
       <img
         src={require('../../assets/bibit-movie-white.png').default}
         alt="img-header"

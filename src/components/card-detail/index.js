@@ -20,7 +20,7 @@ const CardImage = styled.div`
 `
 
 const CardTitle = styled.p`
-  margin: 5px 0 0 0;
+  margin: 10px 0;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -41,10 +41,10 @@ const Detail = styled.div`
     padding: 5px;
     border-radius: 5px;
     span:first-child {
-      color: ${theme.colors.blue};
+      color: ${theme.colors.black};
     }
     span:last-child {
-      color: ${theme.colors.gray3};
+      color: ${theme.colors.gray4};
       width: 50%;
       text-align: right;
       p {
@@ -63,7 +63,7 @@ const Detail = styled.div`
  */
 export default function CardDetail({ list }) {
   return (
-    <StyledCard>
+    <StyledCard data-testid="card-detail">
       <CardImage>
         <img alt="img-poster-movie" src={`${list.data.Poster}`} />
       </CardImage>
