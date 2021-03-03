@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import theme from '../common/theme'
 import NavItem from '../../data/navigation-items'
@@ -24,6 +25,7 @@ const Items = styled.div`
     padding: 5px;
     color: ${(props) =>
       props.active ? theme.colors.green : theme.colors.gray4};
+    font-weight: ${(props) => (props.active ? '600' : '500')};
     transition: all 0.5s ease;
     border-radius: 5px;
     :hover {
@@ -37,11 +39,21 @@ const Items = styled.div`
 `
 
 export default function Navigation() {
+  const location = useLocation()
+  const history = useHistory()
+
+  const HandleClick = (url) => {
+    history.push({ pathname: url })
+  }
+
   return (
     <Container>
       {NavItem.map((item, idx) => (
-        <Items key={String(idx)} active={'/' === item.url}>
-          <div>
+        <Items
+          key={String(idx)}
+          active={location.pathname === item.url}
+        >
+          <div onClick={() => HandleClick(item.url)}>
             <item.icon />
             <span>{item.text}</span>
           </div>
