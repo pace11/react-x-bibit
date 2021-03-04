@@ -66,7 +66,10 @@ const IconSearch = () => (
 
 /**
  *
+ * @param {String} props.title
  * @param {String, <any>} props.children
+ * @param {Boolean} props.searchable
+ * @param {Function} props.onClickSearch
  */
 export default function Section({
   title,
@@ -75,7 +78,7 @@ export default function Section({
   onClickSearch,
 }) {
   return (
-    <Container>
+    <Container data-testid="section">
       <Header>
         <TitleSection>{title}</TitleSection>
         {searchable && (

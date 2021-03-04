@@ -49,6 +49,7 @@ const StyledWrapper = styled.div`
 /**
  *
  * @param {Number} props.number
+ * @param {String} props.type
  */
 export default function Shimmer({ number, type }) {
   switch (type) {
@@ -56,7 +57,11 @@ export default function Shimmer({ number, type }) {
       return (
         <React.Fragment>
           {[...Array(number).keys()].map((index) => (
-            <Section key={String(index)} background="transparent">
+            <Section
+              data-testid="shimmer"
+              key={String(index)}
+              background="transparent"
+            >
               <StyledWrapper>
                 <StyledDivShimmer height="1rem" />
                 <StyledDivShimmer height="1rem" width="50%" />
@@ -70,6 +75,7 @@ export default function Shimmer({ number, type }) {
         <React.Fragment>
           {[...Array(number).keys()].map((index) => (
             <Section
+              data-testid="shimmer"
               key={String(index)}
               background="transparent"
               padding="0"

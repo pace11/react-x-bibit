@@ -121,6 +121,7 @@ function Home() {
         isLoadingSearch={isLoadingSearch}
         onChange={(e) => setKeyword(e.target.value)}
         list={moviesBySearch}
+        handleClickTitleSearch={(val) => HandleClickTitle(val)}
       />
     </Layout>
   )

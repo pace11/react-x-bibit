@@ -110,9 +110,13 @@ const ListMovies = styled.div`
 /**
  *
  * @param {Boolean} props.show
+ * @param {String} props.value
+ * @param {Boolean} props.isLoadingSearch
  * @param {Function} props.onClick
- * @param {String} props.title
- * @param {String <any>} props.children
+ * @param {Function} props.handleScroll
+ * @param {Function} props.onChange
+ * @param {Object, Array} props.list
+ * @param {Function} props.handleClickTitleSearch
  */
 export default function Modal({
   show,
@@ -122,6 +126,7 @@ export default function Modal({
   handleScroll,
   onChange,
   list,
+  handleClickTitleSearch,
 }) {
   if (!show) {
     return null
@@ -144,7 +149,12 @@ export default function Modal({
                 <ListMovies onScroll={handleScroll}>
                   {list.data.length > 0 ? (
                     list.data.map((item, idx) => (
-                      <div key={String(idx)}>
+                      <div
+                        key={String(idx)}
+                        onClick={() =>
+                          handleClickTitleSearch(item.imdbID)
+                        }
+                      >
                         <p>{item.Title}</p>
                         <p>
                           {item.Type} - <span>{item.Year}</span>

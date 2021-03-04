@@ -28,7 +28,6 @@ const ContainerButton = styled.button`
  * @param {String} props.disabled
  * @param {Function} props.onClick
  * @param {String, <any>} props.children
- *
  */
 export default function Button({
   block,
