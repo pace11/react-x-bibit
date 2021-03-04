@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-const urlApi = `http://www.omdbapi.com`
+const urlApi = `https://www.omdbapi.com`
 const apiKey = `bdd3cc38`
 
 export const fetchMovies = async (params) => {
