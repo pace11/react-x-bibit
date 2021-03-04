@@ -1,6 +1,9 @@
 # REACT X BIBIT
 React apps x Bibit
 
+## DEPLOY
+- [x] https://practical-goodall-c41fc7.netlify.app/
+
 ## How to run
  - `git clone` this repository
  - `npm install` or `yarn install`  
